@@ -1,1 +1,6 @@
-# NFT-landing
+# Run
+
+```
+yarn
+yarn start 
+```
