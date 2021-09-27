@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react'
+import axios from 'axios'
+
 import NFTABI from '../../abi/NFTABI'
 import { NFTAddress } from '../../Config'
-import { inject, observer } from 'mobx-react'
+import { API_URL } from '../../Config'
 
 const initData = {
     pre_heading: "Buy item",
@@ -20,17 +23,52 @@ class BuyItem extends Component {
         })
     }
 
-    buy(e){
+    reserve = async () => {
+      const axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": "*",
+            'Authorization': 'Bearer ' + process.env.REACT_APP_AUTH_TOKEN
+        }
+      }
+
+      const body = { tokenIndex:this.props.match.params.item }
+
+      try{
+        await axios.post(API_URL + 'reserve-token/', body, axiosConfig)
+        return true
+      }catch(err){
+        alert("Server error, please try latter",err)
+        console.log("Error", err)
+        return false
+      }
+    }
+
+    buy = async (e) => {
       e.preventDefault()
       if(this.props.walletStore.accountConnected){
         const web3 = this.props.walletStore.web3
         const contractNFT = new web3.eth.Contract(NFTABI, NFTAddress)
-        contractNFT.methods.buyVampire(this.props.match.params.item)
-        .send({
-          from:this.props.walletStore.accounts[0],
-          value: web3.utils.toWei(String(this.state.ethAmount))
-        })
-      }else{
+
+        // check input
+        if(this.state.ethAmount <= 0){
+          alert("Please input amount")
+          return
+        }
+
+        // reserve this token in api
+        const isReserved = await this.reserve()
+
+        if(isReserved){
+          // buy
+          await contractNFT.methods.buyVampire(this.props.match.params.item)
+          .send({
+            from:this.props.walletStore.accounts[0],
+            value: web3.utils.toWei(String(this.state.ethAmount))
+          })
+        }
+      }
+      else{
         alert("Please connect wallet")
       }
     }
