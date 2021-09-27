@@ -14,13 +14,28 @@ const initData = {
 
 class BuyItem extends Component {
     state = {
-        initData: {},
-        ethAmount: 0
+      initData: {},
+      ethAmount: 0,
+      isReserved: false
     }
-    componentDidMount(){
-        this.setState({
-            initData: initData
-        })
+    componentDidMount = async () => {
+      const isReserved = await this.checkIsReserved()
+      this.setState({
+          initData: initData,
+          isReserved
+      })
+    }
+
+    checkIsReserved = async () => {
+       const nftData = await axios.get(API_URL + 'nft/' + this.props.match.params.item)
+       const reserveTime = nftData.data.result.tokenReservedTime
+       const now = Date.now() / 1000
+       const reserveDelay = 900 // 15 minutes
+       if(now > reserveTime + reserveDelay){
+         return false
+       }else{
+         return true
+       }
     }
 
     reserve = async () => {
@@ -74,6 +89,7 @@ class BuyItem extends Component {
     }
 
     render() {
+      console.log("this.state.isReserved", this.state.isReserved)
         return (
             <section className="author-area">
                 <div className="container">
@@ -104,10 +120,22 @@ class BuyItem extends Component {
                                     </div>
 
                                     <div className="col-12">
+                                    {
+                                      !this.state.isReserved
+                                      ?
+                                      (
                                         <button
                                         className="btn w-100 mt-3 mt-sm-4"
                                         onClick={(e) => this.buy(e)}
                                         ><i/>Buy</button>
+                                      )
+                                      :
+                                      (
+                                        <div className="intro text-center">
+                                        <p style={{color:"red"}}> This NFT is not available </p>
+                                        </div>
+                                      )
+                                    }
                                     </div>
                                 </div>
                             </form>
