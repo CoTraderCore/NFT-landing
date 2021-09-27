@@ -19,6 +19,7 @@ class BuyItem extends Component {
       isReserved: false,
       isPurchased:false
     }
+
     componentDidMount = async () => {
       const { isReserved, isPurchased } = await this.checkNFTData()
       this.setState({

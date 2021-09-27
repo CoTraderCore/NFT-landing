@@ -15,25 +15,48 @@ const initData = {
 class ClaimItem extends Component {
     state = {
       initData: {},
-      isReserved: false
+      isReserved: false,
+      isPurchased:false
     }
+
     componentDidMount = async () => {
-      const isReserved = await this.checkIsReserved()
+      const { isReserved, isPurchased } = await this.checkNFTData()
       this.setState({
           initData: initData,
-          isReserved
+          isReserved,
+          isPurchased
       })
     }
 
-    checkIsReserved = async () => {
-       const nftData = await axios.get(API_URL + 'nft/' + this.props.match.params.item)
-       const reserveTime = nftData.data.result.tokenReservedTime
-       const now = Date.now() / 1000
-       const reserveDelay = 900 // 15 minutes
-       if(now > reserveTime + reserveDelay){
-         return false
-       }else{
-         return true
+    componentDidUpdate = async (prevProps, prevState) => {
+      if(prevProps.match.params.item !== this.props.match.params.item){
+        const { isReserved, isPurchased } = await this.checkNFTData()
+        this.setState({
+            isReserved,
+            isPurchased
+        })
+      }
+    }
+
+    checkNFTData = async () => {
+       try{
+         const nftData = await axios.get(API_URL + 'nft/' + this.props.match.params.item)
+         const reserveTime = nftData.data.result.tokenReservedTime
+         const buyStatus = nftData.data.result.tokenIndexUsed
+         console.log("buyStatus", buyStatus)
+
+         const now = Date.now() / 1000
+         const reserveDelay = 900 // 15 minutes
+
+         const isReserved = now > reserveTime + reserveDelay ? false : true
+         const isPurchased = Number(buyStatus) === 1 ? true : false
+
+         return { isReserved, isPurchased }
+       }
+       catch(e){
+         alert("Error with api, please try latter")
+         console.log("Error", e)
+         return { isReserved:true, isPurchased:true }
        }
     }
 
@@ -99,7 +122,7 @@ class ClaimItem extends Component {
                                 <div className="row">
                                     <div className="col-12">
                                     {
-                                      !this.state.isReserved
+                                      !this.state.isReserved && !this.state.isPurchased
                                       ?
                                       (
                                         <button
