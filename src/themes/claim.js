@@ -13,7 +13,7 @@ class Claim extends Component {
         return (
             <div className="main">
                 <Header />
-                <ClaimItem/>
+                <ClaimItem {...this.props}/>
                 <Footer />
                 <ModalSearch />
                 <ModalMenu />
