@@ -5,20 +5,25 @@ import axios from 'axios'
 import STAKEABI from '../../abi/STAKEABI'
 import { StakeAddress } from '../../Config'
 import { API_URL, IPFS_IMG_URL } from '../../Config'
-
+import Web3 from "web3";
+import { fromWei } from 'web3-utils'
 
 class BuyItem extends Component {
     state = {
-      ethAmount: 0,
       isReserved: false,
-      isPurchased:false
+      isPurchased:false,
+      tokenPrice:"0"
     }
 
     componentDidMount = async () => {
       const { isReserved, isPurchased } = await this.checkNFTData()
+      const web3 = new Web3(process.env.REACT_APP_WEB3_DEFAULT_PROVIDER)
+      const contractSTAKE = new web3.eth.Contract(STAKEABI, StakeAddress)
+      const tokenPrice = String(await contractSTAKE.methods.nftPrice().call())
       this.setState({
           isReserved,
-          isPurchased
+          isPurchased,
+          tokenPrice
       })
     }
 
@@ -81,12 +86,6 @@ class BuyItem extends Component {
         const web3 = this.props.walletStore.web3
         const contractSTAKE = new web3.eth.Contract(STAKEABI, StakeAddress)
 
-        // check input
-        if(this.state.ethAmount <= 0){
-          alert("Please input amount")
-          return
-        }
-
         // reserve this token in api
         const isReserved = await this.reserve()
 
@@ -95,7 +94,7 @@ class BuyItem extends Component {
           await contractSTAKE.methods.buyNFT(this.props.match.params.item)
           .send({
             from:this.props.walletStore.accounts[0],
-            value: web3.utils.toWei(String(this.state.ethAmount))
+            value: web3.utils.toWei(String(this.state.tokenPrice))
           })
         }
       }
@@ -115,25 +114,13 @@ class BuyItem extends Component {
                             <div className="intro text-center">
                                 <span>Buy </span>
                                 <br/>
+                                <br/>
                                 <img className="profile-photo" src={`${IPFS_IMG_URL}${this.props.match.params.item}.png`} alt={"Carlie Anglemire"}/>
-                                <p style={{color:"red"}}>Item id: {this.props.match.params.item}</p>
+                                <p style={{color:"red"}}>Price { fromWei(this.state.tokenPrice) } ETH</p>
                             </div>
                             {/* Item Form */}
                             <form id="contact-form" className="item-form card no-hover">
                                 <div className="row">
-                                    <div className="col-12">
-                                        <div className="form-group mt-3">
-                                            <input
-                                            type="number"
-                                            min="0"
-                                            className="form-control"
-                                            name="price"
-                                            placeholder="ETH amount"
-                                            required="required"
-                                            onChange={((e) => this.setState({ethAmount:e.target.value}))}
-                                            />
-                                        </div>
-                                    </div>
 
                                     <div className="col-12">
                                     {

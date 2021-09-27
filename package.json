@@ -19,6 +19,7 @@
     "walletconnect": "^1.6.1",
     "web-vitals": "^1.1.2",
     "web3": "^1.5.2",
+    "web3-utils": "^1.5.3",
     "web3modal": "^1.9.4"
   },
   "scripts": {
