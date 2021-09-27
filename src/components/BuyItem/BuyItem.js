@@ -4,17 +4,11 @@ import axios from 'axios'
 
 import STAKEABI from '../../abi/STAKEABI'
 import { StakeAddress } from '../../Config'
-import { API_URL } from '../../Config'
+import { API_URL, IPFS_IMG_URL } from '../../Config'
 
-const initData = {
-    pre_heading: "Buy item",
-    heading: "Buy item",
-    content: "Item description here, should be loaded from api, json, or props"
-}
 
 class BuyItem extends Component {
     state = {
-      initData: {},
       ethAmount: 0,
       isReserved: false,
       isPurchased:false
@@ -23,7 +17,6 @@ class BuyItem extends Component {
     componentDidMount = async () => {
       const { isReserved, isPurchased } = await this.checkNFTData()
       this.setState({
-          initData: initData,
           isReserved,
           isPurchased
       })
@@ -120,9 +113,9 @@ class BuyItem extends Component {
                         <div className="col-12 col-md-8 col-lg-7">
                             {/* Intro */}
                             <div className="intro text-center">
-                                <span>{this.state.initData.pre_heading}</span>
-                                <h3 className="mt-3 mb-0">{this.state.initData.heading}</h3>
-                                <p>{this.state.initData.content}</p>
+                                <span>Buy </span>
+                                <br/>
+                                <img className="profile-photo" src={`${IPFS_IMG_URL}${this.props.match.params.item}.png`} alt={"Carlie Anglemire"}/>
                                 <p style={{color:"red"}}>Item id: {this.props.match.params.item}</p>
                             </div>
                             {/* Item Form */}
