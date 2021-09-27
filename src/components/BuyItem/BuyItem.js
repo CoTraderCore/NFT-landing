@@ -94,7 +94,7 @@ class BuyItem extends Component {
           await contractSTAKE.methods.buyNFT(this.props.match.params.item)
           .send({
             from:this.props.walletStore.accounts[0],
-            value: web3.utils.toWei(String(this.state.tokenPrice))
+            value: this.state.tokenPrice
           })
         }
       }
