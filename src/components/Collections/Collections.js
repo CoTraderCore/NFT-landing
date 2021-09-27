@@ -28,9 +28,12 @@ class Collections extends Component {
                                 <div key={`cd_${index}`} className="col-12 col-sm-6 col-lg-3 item">
                                     <div className="card no-hover text-center">
                                         <div className="image-over">
-                                            <a href="/item-details">
-                                                <img className="profile-photo" src={`${IPFS_IMG_URL}${index}.png`} alt={"NFT"}/>
-                                            </a>
+                                            <img className="profile-photo" src={`${IPFS_IMG_URL}${index}.png`} alt={"NFT"}/>
+                                            <br/>
+                                            <br/>
+                                            <a className="btn content-btn text-left" href={`#/buy/${index}`}>Buy</a>
+                                            <br/>
+                                            <a className="btn content-btn text-left" href={`#/claim/${index}`}>Claim</a>
                                         </div>
                                     </div>
                                 </div>
