@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react'
 import axios from 'axios'
 
-import NFTABI from '../../abi/NFTABI'
-import { NFTAddress } from '../../Config'
+import STAKEABI from '../../abi/STAKEABI'
+import { StakeAddress } from '../../Config'
 import { API_URL } from '../../Config'
 
 const initData = {
@@ -85,14 +85,14 @@ class ClaimItem extends Component {
       e.preventDefault()
       if(this.props.walletStore.accountConnected){
         const web3 = this.props.walletStore.web3
-        const contractNFT = new web3.eth.Contract(NFTABI, NFTAddress)
+        const contractSTAKE = new web3.eth.Contract(STAKEABI, StakeAddress)
 
         // reserve this token in api
         const isReserved = await this.reserve()
 
         if(isReserved){
           // claim
-          await contractNFT.methods.buyVampire(this.props.match.params.item)
+          await contractSTAKE.methods.claimNFT(this.props.match.params.item)
           .send({
             from:this.props.walletStore.accounts[0]
           })

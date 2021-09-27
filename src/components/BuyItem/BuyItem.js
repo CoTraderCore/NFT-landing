@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react'
 import axios from 'axios'
 
-import NFTABI from '../../abi/NFTABI'
-import { NFTAddress } from '../../Config'
+import STAKEABI from '../../abi/STAKEABI'
+import { StakeAddress } from '../../Config'
 import { API_URL } from '../../Config'
 
 const initData = {
@@ -86,7 +86,7 @@ class BuyItem extends Component {
       e.preventDefault()
       if(this.props.walletStore.accountConnected){
         const web3 = this.props.walletStore.web3
-        const contractNFT = new web3.eth.Contract(NFTABI, NFTAddress)
+        const contractSTAKE = new web3.eth.Contract(STAKEABI, StakeAddress)
 
         // check input
         if(this.state.ethAmount <= 0){
@@ -99,7 +99,7 @@ class BuyItem extends Component {
 
         if(isReserved){
           // buy
-          await contractNFT.methods.buyVampire(this.props.match.params.item)
+          await contractSTAKE.methods.buyNFT(this.props.match.params.item)
           .send({
             from:this.props.walletStore.accounts[0],
             value: web3.utils.toWei(String(this.state.ethAmount))

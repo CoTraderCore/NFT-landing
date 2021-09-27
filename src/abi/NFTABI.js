@@ -3,13 +3,23 @@ const NFTABI = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_maxVampiresSupply",
+				"name": "_maxNFTsSupply",
 				"type": "uint256"
 			},
 			{
 				"internalType": "address",
 				"name": "_platformAddress",
 				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_url",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_nftFormat",
+				"type": "string"
 			}
 		],
 		"stateMutability": "nonpayable",
@@ -70,6 +80,94 @@ const NFTABI = [
 		"inputs": [
 			{
 				"indexed": true,
+				"internalType": "uint256",
+				"name": "NFTIndex",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "fromAddress",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "toAddress",
+				"type": "address"
+			}
+		],
+		"name": "NFTBought",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "NFTIndex",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "unixTime",
+				"type": "uint256"
+			}
+		],
+		"name": "NFTCreated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "NFTIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "NFTNoLongerForSale",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "NFTIndex",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "minValue",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "toAddress",
+				"type": "address"
+			}
+		],
+		"name": "NFTOffered",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
 				"internalType": "address",
 				"name": "previousOwner",
 				"type": "address"
@@ -110,82 +208,39 @@ const NFTABI = [
 		"type": "event"
 	},
 	{
-		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
 				"internalType": "uint256",
-				"name": "vampIndex",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "value",
-				"type": "uint256"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "fromAddress",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "toAddress",
-				"type": "address"
-			}
-		],
-		"name": "VampBought",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "vampIndex",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "VampNoLongerForSale",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
+		"name": "NFTsOfferedForSale",
+		"outputs": [
 			{
-				"indexed": true,
+				"internalType": "bool",
+				"name": "isForSale",
+				"type": "bool"
+			},
+			{
 				"internalType": "uint256",
-				"name": "vampIndex",
+				"name": "NFTIndex",
 				"type": "uint256"
 			},
 			{
-				"indexed": false,
+				"internalType": "address",
+				"name": "seller",
+				"type": "address"
+			},
+			{
 				"internalType": "uint256",
 				"name": "minValue",
 				"type": "uint256"
 			},
 			{
-				"indexed": true,
 				"internalType": "address",
-				"name": "toAddress",
+				"name": "onlySellTo",
 				"type": "address"
-			}
-		],
-		"name": "VampOffered",
-		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "allVampiresAssigned",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -245,25 +300,30 @@ const NFTABI = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "vampIndex",
+				"name": "NFTIndex",
 				"type": "uint256"
 			}
 		],
-		"name": "buyVampire",
+		"name": "buy",
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "createNewVampire",
-		"outputs": [
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_for",
+				"type": "address"
+			},
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "_index",
 				"type": "uint256"
 			}
 		],
+		"name": "createNewFor",
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -311,8 +371,40 @@ const NFTABI = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "isIndexUsed",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "nftFormat",
 		"outputs": [
 			{
 				"internalType": "string",
@@ -327,7 +419,7 @@ const NFTABI = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "vampIndex",
+				"name": "NFTIndex",
 				"type": "uint256"
 			},
 			{
@@ -336,7 +428,7 @@ const NFTABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "offerVampireForSale",
+		"name": "offerForSale",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -345,7 +437,7 @@ const NFTABI = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "vampIndex",
+				"name": "NFTIndex",
 				"type": "uint256"
 			},
 			{
@@ -359,7 +451,7 @@ const NFTABI = [
 				"type": "address"
 			}
 		],
-		"name": "offerVampireForSaleToAddress",
+		"name": "offerForSaleToAddress",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -537,19 +629,6 @@ const NFTABI = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "tokenCounter",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -609,6 +688,24 @@ const NFTABI = [
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "transfer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "from",
 				"type": "address"
 			},
@@ -642,39 +739,32 @@ const NFTABI = [
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "vampsOfferedForSale",
+		"inputs": [],
+		"name": "url",
 		"outputs": [
 			{
-				"internalType": "bool",
-				"name": "isForSale",
-				"type": "bool"
-			},
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "vampIndex",
-				"type": "uint256"
-			},
+				"internalType": "string",
+				"name": "tokenId",
+				"type": "string"
+			}
+		],
+		"name": "viewNFTURL",
+		"outputs": [
 			{
-				"internalType": "address",
-				"name": "seller",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "minValue",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "onlySellTo",
-				"type": "address"
+				"internalType": "string",
+				"name": "",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
