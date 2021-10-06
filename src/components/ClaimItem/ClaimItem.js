@@ -74,11 +74,30 @@ class ClaimItem extends Component {
       }
     }
 
+    isClaimed = async (contractSTAKE, user) => {
+      return await contractSTAKE.methods.claimedNFT(user).call()
+    }
+
+    isParticipant = async (contractSTAKE, user) => {
+      return await contractSTAKE.methods.participantOfStake(user).call()
+    }
+
     claim = async (e) => {
       e.preventDefault()
       if(this.props.walletStore.accountConnected){
         const web3 = this.props.walletStore.web3
+        const user = this.props.walletStore.accounts[0]
         const contractSTAKE = new web3.eth.Contract(STAKEABI, StakeAddress)
+
+        if(await this.isClaimed(contractSTAKE, user)){
+          alert("Alredy claimed!")
+          return
+        }
+
+        if(!await this.isParticipant(contractSTAKE, user)){
+          alert("Not participant of stake!")
+          return
+        }
 
         // reserve this token in api
         const isReserved = await this.reserve()
@@ -87,7 +106,7 @@ class ClaimItem extends Component {
           // claim
           await contractSTAKE.methods.claimNFT(this.props.match.params.item)
           .send({
-            from:this.props.walletStore.accounts[0]
+            from:user
           })
         }
       }
