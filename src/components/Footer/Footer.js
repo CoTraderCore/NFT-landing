@@ -33,11 +33,7 @@ class Footer extends Component {
                             <div className="col-12 col-sm-6 col-lg-3 res-margin">
                                 {/* Footer Items */}
                                 <div className="footer-items">
-                                    {/* Logo */}
-                                    <a className="navbar-brand" href="/">
-                                        <img src={this.state.data.img} alt="" />
-                                    </a>
-                                    <p>{this.state.data.content}</p>
+                                  
                                     {/* Social Icons */}
                                     <div className="social-icons d-flex">
                                         {this.state.socialData.map((item, idx) => {
@@ -102,9 +98,7 @@ class Footer extends Component {
                                 {/* Copyright Area */}
                                 <div className="copyright-area d-flex flex-wrap justify-content-center justify-content-sm-between text-center py-4">
                                     {/* Copyright Left */}
-                                    <div className="copyright-left">©2021 NetStorm, All Rights Reserved.</div>
-                                    {/* Copyright Right */}
-                                    <div className="copyright-right">Made with <i className="fas fa-heart" /> By <a href="#">Themeland</a></div>
+                                    <div className="copyright-left">©2021 BSC TESTNET NFT</div>
                                 </div>
                             </div>
                         </div>

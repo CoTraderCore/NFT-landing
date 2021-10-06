@@ -9,7 +9,8 @@ const Header = () => {
                 <div className="container header">
                     {/* Navbar Brand*/}
                     <a className="navbar-brand" href="/">
-                        <img className="navbar-brand-sticky" src="img/logo.png" alt="sticky brand-logo" />
+                        { /*<img className="navbar-brand-sticky" src="img/logo.png" alt="sticky brand-logo" /> */ }
+                        <p style={{color:"white"}}><strong>BSC TESTNET NFT</strong></p>
                     </a>
                     <div className="ml-auto" />
                     {/* Navbar */}
@@ -17,17 +18,22 @@ const Header = () => {
                         <li className="nav-item dropdown">
                             <a className="nav-link" href="/">Home</a>
                         </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link" href="#">Explore <i className="fas fa-angle-down ml-1" /></a>
-                            <ul className="dropdown-menu">
-                                <li className="nav-item"><a href="/explore-1" className="nav-link">Explore Style 1</a></li>
-                                <li className="nav-item"><a href="/explore-2" className="nav-link">Explore Style 2</a></li>
-                                <li className="nav-item"><a href="/explore-3" className="nav-link">Explore Style 3</a></li>
-                                <li className="nav-item"><a href="/explore-4" className="nav-link">Explore Style 4</a></li>
-                                <li className="nav-item"><a href="/auctions" className="nav-link">Live Auctions</a></li>
-                                <li className="nav-item"><a href="/item-details" className="nav-link">Item Details</a></li>
-                            </ul>
-                        </li>
+                        {
+                          /*
+                          <li className="nav-item dropdown">
+                              <a className="nav-link" href="#">Explore <i className="fas fa-angle-down ml-1" /></a>
+                              <ul className="dropdown-menu">
+                                  <li className="nav-item"><a href="/explore-1" className="nav-link">Explore Style 1</a></li>
+                                  <li className="nav-item"><a href="/explore-2" className="nav-link">Explore Style 2</a></li>
+                                  <li className="nav-item"><a href="/explore-3" className="nav-link">Explore Style 3</a></li>
+                                  <li className="nav-item"><a href="/explore-4" className="nav-link">Explore Style 4</a></li>
+                                  <li className="nav-item"><a href="/auctions" className="nav-link">Live Auctions</a></li>
+                                  <li className="nav-item"><a href="/item-details" className="nav-link">Item Details</a></li>
+                              </ul>
+                          </li>
+                          */
+                        }
+
                         <li className="nav-item">
                             <a href="/activity" className="nav-link">Activity</a>
                         </li>
@@ -39,16 +45,20 @@ const Header = () => {
                                 <li className="nav-item"><a href="/help-center" className="nav-link">Help Center</a></li>
                             </ul>
                         </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link" href="#">Pages <i className="fas fa-angle-down ml-1" /></a>
-                            <ul className="dropdown-menu">
-                                <li className="nav-item"><a href="/authors" className="nav-link">Authors</a></li>
-                                <li className="nav-item"><a href="/author" className="nav-link">Author</a></li>
-                                <li className="nav-item"><a href="/create" className="nav-link">Create</a></li>
-                                <li className="nav-item"><a href="/login" className="nav-link">Login</a></li>
-                                <li className="nav-item"><a href="/signup" className="nav-link">Signup</a></li>
-                            </ul>
-                        </li>
+                        {
+                          /*
+                          <li className="nav-item dropdown">
+                              <a className="nav-link" href="#">Pages <i className="fas fa-angle-down ml-1" /></a>
+                              <ul className="dropdown-menu">
+                                  <li className="nav-item"><a href="/authors" className="nav-link">Authors</a></li>
+                                  <li className="nav-item"><a href="/author" className="nav-link">Author</a></li>
+                                  <li className="nav-item"><a href="/create" className="nav-link">Create</a></li>
+                                  <li className="nav-item"><a href="/login" className="nav-link">Login</a></li>
+                                  <li className="nav-item"><a href="/signup" className="nav-link">Signup</a></li>
+                              </ul>
+                          </li>
+                          */
+                        }
                         <li className="nav-item">
                             <a href="/contact" className="nav-link">Contact</a>
                         </li>
