@@ -6,7 +6,7 @@
 * Version  : 1.0
 * Author   : Themeland
 * Support  : hridoy1272@gmail.com
-* 
+*
 ----------------------------------------------*/
 
 /*----------------------------------------------
@@ -15,7 +15,7 @@
 
 1. Preloader
 2. Responsive Menu
-3. Navigation 
+3. Navigation
 4. Slides
 5. Load More
 6. Shuffle
@@ -70,7 +70,7 @@ $( document ).ready(function() {
             $(this).addClass('children-'+children);
         })
 
-        
+
         $('.menu .nav-item.dropdown').each(function() {
 
             var children = $(this).children('.nav-link');
@@ -405,7 +405,7 @@ $( document ).ready(function() {
             $(this).find('.explore-items').removeClass('explore-items').addClass('explore-items-'+count);
             $(this).find('.explore-item').removeClass('explore-item').addClass('explore-item-'+count);
             $(this).find('.explore-btn').removeClass('explore-btn').addClass('explore-btn-'+count);
-            
+
             var Shuffle = window.Shuffle;
             var Filter  = new Shuffle(document.querySelector('.explore-items-'+count), {
                 itemSelector: '.explore-item-'+count,
@@ -415,7 +415,7 @@ $( document ).ready(function() {
             $('.explore-btn-'+count).on('change', function (e) {
 
                 var input = e.currentTarget;
-                
+
                 if (input.checked) {
                     Filter.filter(input.value);
                 }
