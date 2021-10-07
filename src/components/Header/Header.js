@@ -1,5 +1,6 @@
 import React from 'react';
 import Wallet from '../Wallet/Wallet'
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
@@ -62,15 +63,11 @@ const Header = () => {
                           */
                         }
                         <li className="nav-item">
-                            <a href="#/contact" className="nav-link">Contact</a>
+                            <Link to="contact" className="nav-link">Contact</Link>
                         </li>
 
                         <li className="nav-item">
-                            <a href={`#/my-nfts`} className="nav-link">My nfts</a>
-                        </li>
-
-                        <li className="nav-item">
-                            <a href={`#/my-nfts`}>My nfts</a>
+                            <Link to={`my-nfts`} className="nav-link">My nfts</Link>
                         </li>
                     </ul>
                     {/* Navbar Icons */}
