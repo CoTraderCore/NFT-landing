@@ -8,7 +8,7 @@ const Header = () => {
             <nav data-aos="zoom-out" data-aos-delay={800} className="navbar navbar-expand">
                 <div className="container header">
                     {/* Navbar Brand*/}
-                    <a className="navbar-brand" href="/#/">
+                    <a className="navbar-brand" href="#/">
                         { /*<img className="navbar-brand-sticky" src="img/logo.png" alt="sticky brand-logo" /> */ }
                         <p style={{color:"white"}}><strong>BSC TESTNET NFT</strong></p>
                     </a>
@@ -16,7 +16,7 @@ const Header = () => {
                     {/* Navbar */}
                     <ul className="navbar-nav items mx-auto">
                         <li className="nav-item dropdown">
-                            <a className="nav-link" href="/#/">Home</a>
+                            <a className="nav-link" href="#/">Home</a>
                         </li>
                         {
                           /*
@@ -34,17 +34,19 @@ const Header = () => {
                           */
                         }
 
-                        <li className="nav-item">
-                            <a href="/#/my-nfts" className="nav-link">My nfts</a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link" href="#">Community <i className="fas fa-angle-down ml-1" /></a>
-                            <ul className="dropdown-menu">
-                                <li className="nav-item"><a href="/blog" className="nav-link">Blog</a></li>
-                                <li className="nav-item"><a href="/blog-single" className="nav-link">Blog Single</a></li>
-                                <li className="nav-item"><a href="/help-center" className="nav-link">Help Center</a></li>
-                            </ul>
-                        </li>
+                        {
+                          /*
+                          <li className="nav-item dropdown">
+                              <a className="nav-link" href="#">Community <i className="fas fa-angle-down ml-1" /></a>
+                              <ul className="dropdown-menu">
+                                  <li className="nav-item"><a href="/blog" className="nav-link">Blog</a></li>
+                                  <li className="nav-item"><a href="/blog-single" className="nav-link">Blog Single</a></li>
+                                  <li className="nav-item"><a href="/help-center" className="nav-link">Help Center</a></li>
+                              </ul>
+                          </li>
+                          */
+                        }
+
                         {
                           /*
                           <li className="nav-item dropdown">
@@ -60,7 +62,15 @@ const Header = () => {
                           */
                         }
                         <li className="nav-item">
-                            <a href="/contact" className="nav-link">Contact</a>
+                            <a href="#/contact" className="nav-link">Contact</a>
+                        </li>
+
+                        <li className="nav-item">
+                            <a href={`#/my-nfts`} className="nav-link">My nfts</a>
+                        </li>
+
+                        <li className="nav-item">
+                            <a href={`#/my-nfts`}>My nfts</a>
                         </li>
                     </ul>
                     {/* Navbar Icons */}
