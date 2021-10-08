@@ -55,9 +55,7 @@ class SellOffers extends Component {
                                         <div className="card-caption col-12 p-0">
                                             {/* Card Body */}
                                             <div className="card-body">
-                                                <a href="/item-details">
-                                                    <h5 className="mb-0">{`Price ${fromWei(String(item.offerPrice))} ${MainAsset}`}</h5>
-                                                </a>
+                                                <h5 className="mb-0">{`Price ${fromWei(String(item.offerPrice))} ${MainAsset}`}</h5>
                                                 <div className="seller d-flex align-items-center my-3">
                                                     <span>Owned By</span>
                                                     <a href="/author">
