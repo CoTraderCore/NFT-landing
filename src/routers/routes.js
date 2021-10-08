@@ -24,6 +24,7 @@ import Claim from "../themes/claim";
 import Buy from "../themes/buy";
 import MyNfts from "../themes/my-nfts"
 import Sell from "../themes/sell"
+import Offers from "../themes/offers"
 
 
 class MyRouts extends React.Component {
@@ -51,6 +52,7 @@ class MyRouts extends React.Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/contact" component={Contact} />
 
+            <Route path="/offers" render={(props) => <Offers {...props} />} />}/>
             <Route path="/my-nfts" render={(props) => <MyNfts {...props} />} />}/>
             <Route path="/sell/:item" render={(props) => <Sell {...props} />} />}/>
             <Route path="/claim/:item" render={(props) => <Claim {...props} />} />}/>
