@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react'
 import axios from 'axios'
 
-import STAKEABI from '../../abi/STAKEABI'
-import { StakeAddress } from '../../Config'
-import { API_URL, IPFS_IMG_URL } from '../../Config'
+import NFTABI from '../../abi/NFTABI'
+import { API_URL, IPFS_IMG_URL, NFTAddress } from '../../Config'
 import Web3 from "web3";
 import { fromWei } from 'web3-utils'
 
@@ -84,14 +83,14 @@ class BuyItem extends Component {
       e.preventDefault()
       if(this.props.walletStore.accountConnected){
         const web3 = this.props.walletStore.web3
-        const contractSTAKE = new web3.eth.Contract(STAKEABI, StakeAddress)
+        const contract = new web3.eth.Contract(NFTABI, NFTAddress)
 
         // reserve this token in api
         const isReserved = await this.reserve()
 
         if(isReserved){
           // buy
-          await contractSTAKE.methods.buyNFT(this.props.match.params.item)
+          await contract.methods.buy(this.props.match.params.item)
           .send({
             from:this.props.walletStore.accounts[0],
             value: this.state.tokenPrice
