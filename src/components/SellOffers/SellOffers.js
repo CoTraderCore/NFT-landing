@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { IPFS_IMG_URL, API_URL } from '../../Config'
+import { IPFS_IMG_URL, API_URL, MainAsset } from '../../Config'
 import { Link } from "react-router-dom";
-
+import { fromWei } from 'web3-utils'
 
 class SellOffers extends Component {
    state = {
@@ -48,7 +48,7 @@ class SellOffers extends Component {
                                     <div className="card">
                                         <div className="image-over">
                                             <a href="/item-details">
-                                                <img className="profile-photo" src={`${IPFS_IMG_URL}${index}.png`} alt={"NFT"}/>
+                                                <img className="profile-photo" src={`${IPFS_IMG_URL}${item.tokenIndex}.png`} alt={"NFT"}/>
                                             </a>
                                         </div>
                                         {/* Card Caption */}
@@ -56,7 +56,7 @@ class SellOffers extends Component {
                                             {/* Card Body */}
                                             <div className="card-body">
                                                 <a href="/item-details">
-                                                    <h5 className="mb-0">{item.isOffered}</h5>
+                                                    <h5 className="mb-0">{`Price ${fromWei(String(item.offerPrice))} ${MainAsset}`}</h5>
                                                 </a>
                                                 <div className="seller d-flex align-items-center my-3">
                                                     <span>Owned By</span>
