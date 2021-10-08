@@ -1,24 +1,48 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { IPFS_IMG_URL, API_URL } from '../../Config'
+import React, { Component } from 'react'
+import axios from 'axios'
+import STAKEABI from '../../abi/STAKEABI'
+import Web3 from "web3"
+import { fromWei } from 'web3-utils'
+import {
+  IPFS_IMG_URL,
+  API_URL,
+  StakeAddress,
+  MainAsset
+} from '../../Config'
+
 
 class ExploreMain extends Component {
    state = {
-     availableNfts:[]
+     availableNfts:[],
+     tokenPrice:"0"
    }
 
    componentDidMount = async () => {
+     let availableNfts = []
+     let tokenPrice = "0"
+     // Load data from blockchain
+     try{
+       const web3 = new Web3(process.env.REACT_APP_WEB3_DEFAULT_PROVIDER)
+       const contractSTAKE = new web3.eth.Contract(STAKEABI, StakeAddress)
+       tokenPrice = String(await contractSTAKE.methods.nftPrice().call())
+     }catch(e){
+       alert("Can not load data from contracts")
+       console.log("Errr", e)
+     }
+     // Load data from api
      try{
        const nftData = await axios.get(API_URL + 'nfts/')
        const allNfts = nftData.data.result
-       const availableNfts = allNfts.filter(item => item.tokenIndexUsed === 0)
-       this.setState({
-         availableNfts
-       })
+       availableNfts = allNfts.filter(item => item.tokenIndexUsed === 0)
      }catch(e){
        alert("Can not get data from api")
        console.log("Errr", e)
      }
+
+     this.setState({
+       availableNfts,
+       tokenPrice
+     })
     }
     render() {
         return (
@@ -49,9 +73,7 @@ class ExploreMain extends Component {
                                         <div className="card-caption col-12 p-0">
                                             {/* Card Body */}
                                             <div className="card-body">
-                                                <a href="/item-details">
-                                                    <h5 className="mb-0">token index {item.tokenIndex}</h5>
-                                                </a>
+                                                <h5 className="mb-0">Price {fromWei(String(this.state.tokenPrice))} {MainAsset}</h5>
                                                 <div className="card-bottom d-flex justify-content-between">
                                                 <a className="btn btn-bordered-white btn-smaller mt-3" href={`#/buy/${index}`}><i className="icon-handbag mr-2" />Buy</a>
                                                 <br/>
