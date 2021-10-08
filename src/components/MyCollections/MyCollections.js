@@ -58,7 +58,8 @@ class MyCollections extends Component {
                                         <div className="card no-hover text-center">
                                             <div className="image-over">
                                                 <img className="profile-photo" src={`${IPFS_IMG_URL}${index}.png`} alt={"NFT"}/>
-                                                <a className="btn content-btn text-left" href={`#/claim/${index}`}>Sell</a>
+                                                <br/>
+                                                <a className="btn btn-bordered-white btn-smaller mt-3" href={`#/claim/${index}`}>Sell</a>
                                             </div>
                                         </div>
                                     </div>

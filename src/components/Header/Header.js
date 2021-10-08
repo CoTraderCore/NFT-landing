@@ -67,6 +67,10 @@ const Header = () => {
                         </li>
 
                         <li className="nav-item">
+                            <Link to="offers" className="nav-link">Users offer</Link>
+                        </li>
+
+                        <li className="nav-item">
                             <Link to={`my-nfts`} className="nav-link">My nfts</Link>
                         </li>
                     </ul>

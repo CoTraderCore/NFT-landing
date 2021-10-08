@@ -31,9 +31,9 @@ class Collections extends Component {
                                             <img className="profile-photo" src={`${IPFS_IMG_URL}${index}.png`} alt={"NFT"}/>
                                             <br/>
                                             <br/>
-                                            <a className="btn content-btn text-left" href={`#/buy/${index}`}>Buy</a>
+                                            <a className="btn btn-bordered-white btn-smaller mt-3" href={`#/buy/${index}`}><i className="icon-handbag mr-2" />Buy</a>
                                             <br/>
-                                            <a className="btn content-btn text-left" href={`#/claim/${index}`}>Claim</a>
+                                            <a className="btn btn-bordered-white btn-smaller mt-3" href={`#/claim/${index}`}>Claim</a>
                                         </div>
                                     </div>
                                 </div>
