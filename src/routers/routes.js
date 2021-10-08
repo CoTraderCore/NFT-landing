@@ -3,10 +3,6 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 
 // importing all the themes
 import ThemeOne from "../themes/theme-one";
-import ExploreOne from "../themes/explore-one";
-import ExploreTwo from "../themes/explore-two";
-import ExploreThree from "../themes/explore-three";
-import ExploreFour from "../themes/explore-four";
 import Auctions from "../themes/auctions";
 import ItemDetails from "../themes/item-details";
 import Activity from "../themes/activity";
@@ -26,7 +22,7 @@ import BuyFrom from "../themes/buy-from";
 import MyNfts from "../themes/my-nfts"
 import Sell from "../themes/sell"
 import Offers from "../themes/offers"
-
+import Explore from "../themes/explore"
 
 class MyRouts extends React.Component {
   render() {
@@ -35,10 +31,6 @@ class MyRouts extends React.Component {
         <HashRouter>
           <Switch>
             <Route exact path="/" component={ThemeOne} />
-            <Route exact path="/explore-1" component={ExploreOne} />
-            <Route exact path="/explore-2" component={ExploreTwo} />
-            <Route exact path="/explore-3" component={ExploreThree} />
-            <Route exact path="/explore-4" component={ExploreFour} />
             <Route exact path="/auctions" component={Auctions} />
             <Route exact path="/item-details" component={ItemDetails} />
             <Route exact path="/activity" component={Activity} />
@@ -53,6 +45,8 @@ class MyRouts extends React.Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/contact" component={Contact} />
 
+
+            <Route exact path="/explore" component={Explore} />
             <Route path="/offers" render={(props) => <Offers {...props} />} />}/>
             <Route path="/my-nfts" render={(props) => <MyNfts {...props} />} />}/>
             <Route path="/sell/:item" render={(props) => <Sell {...props} />} />}/>

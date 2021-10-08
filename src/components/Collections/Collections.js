@@ -17,7 +17,7 @@ class Collections extends Component {
                                     <h3 className="mt-3 mb-0">Most popular</h3>
                                 </div>
                                 <div className="intro-btn">
-                                    <a className="btn content-btn text-left" href="#/explore-1">Explore</a>
+                                    <a className="btn content-btn text-left" href="#/explore">Explore</a>
                                 </div>
                             </div>
                         </div>
