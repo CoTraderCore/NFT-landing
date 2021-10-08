@@ -6,3 +6,5 @@ export const IPFS_IMG_URL = "https://gateway.pinata.cloud/ipfs/QmcEVoN8NWoSoZ4Y4
 // BSC test Smart chain
 export const NFTAddress = "0x8EC4F3a6fa30DbCDA59e9AC6Bd3e4826c4991524"
 export const StakeAddress = "0x18eA7B4EeB0b9Ac4Ef070856560124Ac215A7668"
+
+export const MainAsset = "BNB"
