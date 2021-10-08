@@ -22,6 +22,7 @@ import Signup from "../themes/signup";
 import Contact from "../themes/contact";
 import Claim from "../themes/claim";
 import Buy from "../themes/buy";
+import BuyFrom from "../themes/buy-from";
 import MyNfts from "../themes/my-nfts"
 import Sell from "../themes/sell"
 import Offers from "../themes/offers"
@@ -57,6 +58,7 @@ class MyRouts extends React.Component {
             <Route path="/sell/:item" render={(props) => <Sell {...props} />} />}/>
             <Route path="/claim/:item" render={(props) => <Claim {...props} />} />}/>
             <Route path="/buy/:item" render={(props) => <Buy {...props} />} />
+            <Route path="/buy-from-user/:item" render={(props) => <BuyFrom {...props} />} />
           </Switch>
         </HashRouter>
       </div>

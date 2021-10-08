@@ -19,7 +19,7 @@ class BuyItem extends Component {
         alert("Please input amount")
         return
       }
-      
+
       if(this.props.walletStore.accountConnected){
         const web3 = this.props.walletStore.web3
         const account = this.props.walletStore.accounts[0]
@@ -31,6 +31,7 @@ class BuyItem extends Component {
           ownerOf = await nft.methods.ownerOf(nftId).call()
         }catch(e){
           alert("Check ownership error")
+          console.log("Errr", e)
           return
         }
 

@@ -57,9 +57,9 @@ class MyCollections extends Component {
                                     <div key={`cd_${index}`} className="col-12 col-sm-6 col-lg-3 item">
                                         <div className="card no-hover text-center">
                                             <div className="image-over">
-                                                <img className="profile-photo" src={`${IPFS_IMG_URL}${index}.png`} alt={"NFT"}/>
+                                                <img className="profile-photo" src={`${IPFS_IMG_URL}${item.tokenIndex}.png`} alt={"NFT"}/>
                                                 <br/>
-                                                <a className="btn btn-bordered-white btn-smaller mt-3" href={`#/claim/${index}`}>Sell</a>
+                                                <a className="btn btn-bordered-white btn-smaller mt-3" href={`#/sell/${item.tokenIndex}`}>Sell</a>
                                             </div>
                                         </div>
                                     </div>
