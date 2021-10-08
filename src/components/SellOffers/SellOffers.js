@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { IPFS_IMG_URL, API_URL, MainAsset } from '../../Config'
+import { IPFS_IMG_URL, API_URL, MainAsset, ExploreLink } from '../../Config'
 import { Link } from "react-router-dom";
 import { fromWei } from 'web3-utils'
 
@@ -35,9 +35,6 @@ class SellOffers extends Component {
                                     <span>NFTs for sale</span>
                                     <h3 className="mt-3 mb-0">users offer</h3>
                                 </div>
-                                <div className="intro-btn">
-                                    <a className="btn content-btn" href="/explore-1">TODO</a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -47,9 +44,7 @@ class SellOffers extends Component {
                                 <div key={`edt_${index}`} className="col-12 col-sm-6 col-lg-3 item">
                                     <div className="card">
                                         <div className="image-over">
-                                            <a href="/item-details">
-                                                <img className="profile-photo" src={`${IPFS_IMG_URL}${item.tokenIndex}.png`} alt={"NFT"}/>
-                                            </a>
+                                            <img className="profile-photo" src={`${IPFS_IMG_URL}${item.tokenIndex}.png`} alt={"NFT"}/>
                                         </div>
                                         {/* Card Caption */}
                                         <div className="card-caption col-12 p-0">
@@ -58,7 +53,7 @@ class SellOffers extends Component {
                                                 <h5 className="mb-0">{`Price ${fromWei(String(item.offerPrice))} ${MainAsset}`}</h5>
                                                 <div className="seller d-flex align-items-center my-3">
                                                     <span>Owned By</span>
-                                                    <a href="/author">
+                                                    <a href={`${ExploreLink}/address/${item.owner}`} target="_blank"> 
                                                         {
                                                           item.owner !== "0x"
                                                           ?
