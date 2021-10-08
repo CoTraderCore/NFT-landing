@@ -46,7 +46,7 @@ class MyRouts extends React.Component {
             <Route exact path="/contact" component={Contact} />
 
 
-            <Route exact path="/explore" component={Explore} />
+            <Route path="/explore" render={(props) => <Explore {...props} />} />} />
             <Route path="/offers" render={(props) => <Offers {...props} />} />}/>
             <Route path="/my-nfts" render={(props) => <MyNfts {...props} />} />}/>
             <Route path="/sell/:item" render={(props) => <Sell {...props} />} />}/>

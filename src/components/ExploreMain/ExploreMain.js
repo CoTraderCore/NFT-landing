@@ -3,6 +3,7 @@ import axios from 'axios'
 import STAKEABI from '../../abi/STAKEABI'
 import Web3 from "web3"
 import { fromWei } from 'web3-utils'
+import { Link } from "react-router-dom"
 import {
   IPFS_IMG_URL,
   API_URL,
@@ -65,9 +66,7 @@ class ExploreMain extends Component {
                                 <div key={`edt_${item.tokenIndex}`} className="col-12 col-sm-6 col-lg-3 item">
                                     <div className="card">
                                         <div className="image-over">
-                                            <a href="/item-details">
-                                                <img className="profile-photo" src={`${IPFS_IMG_URL}${item.tokenIndex}.png`} alt={"NFT"}/>
-                                            </a>
+                                            <img className="profile-photo" src={`${IPFS_IMG_URL}${item.tokenIndex}.png`} alt={"NFT"}/>
                                         </div>
                                         {/* Card Caption */}
                                         <div className="card-caption col-12 p-0">
@@ -75,9 +74,9 @@ class ExploreMain extends Component {
                                             <div className="card-body">
                                                 <h5 className="mb-0">Price {fromWei(String(this.state.tokenPrice))} {MainAsset}</h5>
                                                 <div className="card-bottom d-flex justify-content-between">
-                                                <a className="btn btn-bordered-white btn-smaller mt-3" href={`#/buy/${index}`}><i className="icon-handbag mr-2" />Buy</a>
+                                                <Link className="btn btn-bordered-white btn-smaller mt-3" to={`buy/${index}`}><i className="icon-handbag mr-2" />Buy</Link>
                                                 <br/>
-                                                <a className="btn btn-bordered-white btn-smaller mt-3" href={`#/claim/${index}`}>Claim</a>
+                                                <Link className="btn btn-bordered-white btn-smaller mt-3" to={`claim/${index}`}>Claim</Link>
                                                 </div>
                                             </div>
                                         </div>

@@ -63,19 +63,19 @@ const Header = () => {
                           */
                         }
                         <li className="nav-item">
-                            <Link to="contact" className="nav-link">Contact</Link>
+                            <Link to="/contact" className="nav-link">Contact</Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link to={`explore`} className="nav-link">Initial offer</Link>
+                            <Link to={`/explore`} className="nav-link">Initial offer</Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link to="offers" className="nav-link">Secondary market</Link>
+                            <Link to="/offers" className="nav-link">Secondary market</Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link to={`my-nfts`} className="nav-link">My nfts</Link>
+                            <Link to={`/my-nfts`} className="nav-link">My nfts</Link>
                         </li>
                     </ul>
                     {/* Navbar Icons */}
